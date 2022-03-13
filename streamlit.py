@@ -1,8 +1,6 @@
-from faulthandler import disable
 import pandas as pd
 import streamlit as st
 import datetime
-import time
 
 st.set_page_config(
     layout="centered", page_icon="📝", page_title="Inventory Stock Control", initial_sidebar_state='collapsed'
