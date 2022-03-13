@@ -42,7 +42,7 @@ def getInventory(url):
     st.session_state.last_updated = datetime.datetime.now().strftime('%B %d ,%Y - %H:%M:%S')
     return tempdf, st.session_state.last_updated
 
-INV, last_updated = getInventory('INV.csv')
+INV, last_updated = getInventory('https://raw.githubusercontent.com/madeedam/streamlit/main/INV.csv')
 st.success(f"Last updated: {last_updated}")
 
 pcode_choice = st.selectbox('Tipe PCODE', ['DMS','SCYLLA'])
