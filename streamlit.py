@@ -67,6 +67,6 @@ else:
 st.text_input("Stock Awal", value=f"{str(Carton).zfill(3)}.000.{str(Pieces).zfill(3)} <=> {TotalPCS} pcs", disabled=True)
 
 # Download file
-df = convert_df(INV)
-if st.sidebar.download_button("Download File", data=df, file_name='INV.csv', mime='text/csv'):
-    st.sidebar.info("Downloading")
+# df = convert_df(INV)
+# if st.sidebar.download_button("Download File", data=df, file_name='INV.csv', mime='text/csv'):
+#     st.sidebar.info("Downloading")
