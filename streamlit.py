@@ -6,10 +6,10 @@ st.set_page_config(
     layout="centered", page_icon="📝", page_title="Inventory Stock Control", initial_sidebar_state='collapsed'
 )
 # Bye Bye Menu
-# st.markdown(""" <style>
-# #MainMenu {visibility: hidden;}
-# footer {visibility: hidden;}
-# </style> """, unsafe_allow_html=True)
+st.markdown(""" <style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style> """, unsafe_allow_html=True)
 
 # Session Key
 if 'last_updated' not in st.session_state:
