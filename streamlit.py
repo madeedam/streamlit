@@ -1,3 +1,4 @@
+from re import L
 import pandas as pd
 import streamlit as st
 import datetime
@@ -55,16 +56,42 @@ elif pcode_choice == 'SCYLLA':
 ProdName = [x.strip() for x in selection.split('|')][1]
 ItemInfo = INV[INV['NAMA BARANG'] == ProdName]
 
+CartonConversion = ItemInfo['ISI/LSN'].values[0]
 TotalPCS, Carton, Pieces = ItemInfo['QTY STOK UPDATE(PCS)'].values[0],0,0
 if ItemInfo['SCH-RCNG'].values == True:
     tempvalue = ItemInfo['QTY STOK UPDATE(PCS)'].values[0] / 8
-    Carton = int(tempvalue // ItemInfo['ISI/LSN'].values[0])
-    Pieces = int(tempvalue % ItemInfo['ISI/LSN'].values[0])
+    Carton = int(tempvalue // CartonConversion)
+    Pieces = int(tempvalue % CartonConversion)
 else:
-    Carton = int(TotalPCS // ItemInfo['ISI/LSN'].values[0])
-    Pieces = int(TotalPCS % ItemInfo['ISI/LSN'].values[0])
+    Carton = int(TotalPCS // CartonConversion)
+    Pieces = int(TotalPCS % CartonConversion)
 
 st.text_input("Stock Awal", value=f"{str(Carton).zfill(3)}.000.{str(Pieces).zfill(3)} <=> {TotalPCS} pcs", disabled=True)
+
+with st.expander("Adjustment"):
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        CM = st.number_input("Carton", min_value=1, max_value=Carton)
+        OpenCarton = Carton - CM
+    with col2:
+        st.number_input("Pieces", value=(OpenCarton * CartonConversion) + Pieces)
+    with col3:
+        st.markdown("Save Adjustment")
+        st.button("Confirm")
+
+# with st.expander("Selisih"):
+#     with st.form("StockManual", clear_on_submit=True):
+#         col1, col2, col3 = st.columns(3)
+#         with col1:
+#             st.number_input("Carton", value=0)
+#         with col2:
+#             st.number_input("Pieces", value=0)
+#         with col3:
+#             st.number_input("Total Pieces", value=0)
+
+#         if st.form_submit_button("Confirm"):
+#             st.success("Data telah disimpan.")
+        
 
 # Download file
 # df = convert_df(INV)
