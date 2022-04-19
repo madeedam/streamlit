@@ -85,9 +85,10 @@ def convertFingerprint():
         st.subheader("Fingerprint Conversion")
         uploadedFile = st.file_uploader("Upload File")
         officeSelection = st.radio('Select Office', ['Mataram','Jegles'])
-        DIM = int(st.number_input("Select Month", value=datetime.datetime.now().month, min_value=1, max_value=12))
+        DY = int(st.number_input("Select Year", value=datetime.datetime.now().year, min_value=2022))
+        DM = int(st.number_input("Select Month", value=datetime.datetime.now().month, min_value=1, max_value=12))
 
-    daysinmonth = [datetime.date(2022, DIM, day).strftime('%d/%m/%Y') for day in range(1, calendar.monthrange(2022, DIM)[1]+1)]
+    daysinmonth = [datetime.date(DY, DM, day).strftime('%d/%m/%Y') for day in range(1, calendar.monthrange(DY, DM)[1]+1)]
     if officeSelection == 'Jegles' and uploadedFile:
         DF = Office_K2(uploadedFile, daysinmonth)
         st.dataframe(DF, height=800)
