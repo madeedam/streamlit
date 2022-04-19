@@ -4,7 +4,6 @@ import numpy as np
 import datetime
 import calendar
 import os
-import xlsxwriter
 from io import BytesIO
 
 st.set_page_config(layout="wide")
