@@ -93,7 +93,6 @@ def convertFingerprint():
         DF = Office_K2(uploadedFile, daysinmonth)
         st.dataframe(DF, height=800)
 
-    if uploadedFile:
         output = BytesIO()
         DF.to_excel(output)
         with st.sidebar:
