@@ -122,7 +122,6 @@ def showTable(dataframe, setTableHeight = 500, configureSelection = 'single'):
     return AgGrid(
         dataframe,
         gridOptions=gridOptions,
-        theme="light",
         height=setTableHeight,
         enable_enterprise_modules=True,
         fit_columns_on_grid_load=True,
