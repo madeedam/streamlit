@@ -151,6 +151,7 @@ if 'LastProcessedIteration' not in st.session_state:
 page1, page2, page3, page4, page5, page6 = st.tabs(['Upload','Merger','Confirmation','Download','Debug','Settings'])
 
 with page1:
+    st.write(st.__version__)
     rawUpload = st.file_uploader('Required Files', accept_multiple_files=True)
     if len(rawUpload) != 4:
         st.error('Missing Files.')
