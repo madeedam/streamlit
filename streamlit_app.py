@@ -123,7 +123,7 @@ def showTable(dataframe, setTableHeight = 500, configureSelection = 'single'):
         dataframe,
         gridOptions=gridOptions,
         height=setTableHeight,
-        theme='light,'
+        theme='light',
         enable_enterprise_modules=True,
         fit_columns_on_grid_load=True,
         data_return_mode=DataReturnMode.FILTERED,
