@@ -110,7 +110,7 @@ def spacer(x):
         st.write("")
 
 def showTable(dataframe, setTableHeight = 500, configureSelection = 'single'):
-    options = GridOptionsBuilder.from_dataframe(dataframe, enableRowGroup=True, enableValue=True, enablePivot=True, editable=True)
+    options = GridOptionsBuilder.from_dataframe(dataframe, enableRowGroup=True, enableValue=True, enablePivot=True, editable=False)
     options.configure_side_bar()
     options.configure_selection(configureSelection, groupSelectsChildren=True, groupSelectsFiltered=True, use_checkbox=True, suppressRowClickSelection=True)
     HCS = False
