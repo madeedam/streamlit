@@ -230,8 +230,7 @@ with page2:
             spacer(10)
             if st.button(">"):
                 if LDF['selected_rows']:
-                    st.session_state['TempDF'] = pd.DataFrame(LDF['selected_rows']).drop('rowIndex', axis=1)
-                    # st.session_state['preSelectIndex'] = MO[MO['NOMOR'] == st.session_state['TempDF']['Outlet'].values[0]].index.tolist()[0]
+                    st.session_state['TempDF'] = pd.DataFrame(LDF['selected_rows'])
             if st.button("<"):
                 st.session_state['TempDF'] = pd.DataFrame(columns=['INVNumber','Outlet','Outlet Name'])
 
