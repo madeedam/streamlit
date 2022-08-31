@@ -1,1 +1,5 @@
 streamlit-aggrid
+openpyxl
+pandas
+numpy
+xlsxwriter
