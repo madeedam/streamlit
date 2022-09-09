@@ -199,8 +199,6 @@ with page1:
                 del st.session_state[_]
         st.experimental_rerun()
 
-    UID_SALES
-
 # Merger
 with page2:
     P2_DF = st.session_state['PendingInvoices']
