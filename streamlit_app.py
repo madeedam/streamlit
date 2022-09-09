@@ -23,7 +23,7 @@ def parseSND(filepath):
         _ = line.decode('utf-8').strip()
         if len(_) != 0:
             data.append(_)
-    SUID_IMPORT = pd.DataFrame([line.replace('"','').split(';') for line in data[4:]], columns=data[1].split(';'), dtype=str)
+    SUID_IMPORT = pd.DataFrame([line.replace('"','').split(';') for line in data[3:]], columns=data[1].split(';'), dtype=str)
     SUID_IMPORT = SUID_IMPORT.drop(SUID_IMPORT[~SUID_IMPORT['INVNumber'].apply(lambda x: x.isdigit())].index).reset_index(drop=True)
 
     for index, row in SUID_IMPORT.iterrows():
