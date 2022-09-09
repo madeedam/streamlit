@@ -175,7 +175,6 @@ with page1:
     TotalInvoice = len(UID_SALES['INVNumber'].unique())
     if not PreviousInvoices.empty:
         st.session_state['LastProcessedIteration'] = int(PreviousInvoices['Iteration'].max())
-        print(f'Last Iteration = {PreviousInvoices["Iteration"].max()}')
         OldInvoices = PreviousInvoices['INVNumber'].tolist()
         for index, row in UID_SALES.iterrows():
             if row['INVNumber'] in OldInvoices:
