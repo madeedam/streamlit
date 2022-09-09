@@ -21,9 +21,9 @@ def parseSND(filepath):
     data = []
     for line in filepath:
         _ = line.decode('utf-8').strip()
-        if len(_) != 0:
-            data.append(_)
-    SUID_IMPORT = pd.DataFrame([line.replace('"','').split(';') for line in data[3:]], columns=data[1].split(';'), dtype=str)
+        data.append(_)
+    SUID_IMPORT = pd.DataFrame([line.replace('"','').split(';') for line in data[4:]], columns=data[1].split(';'), dtype=str)
+    SUID_IMPORT = SUID_IMPORT.dropna(thresh=10)
     SUID_IMPORT = SUID_IMPORT.drop(SUID_IMPORT[~SUID_IMPORT['INVNumber'].apply(lambda x: x.isdigit())].index).reset_index(drop=True)
 
     for index, row in SUID_IMPORT.iterrows():
@@ -189,7 +189,7 @@ with page1:
     st.warning(f'To be processed | {TotalInvoice:3} - {TotalInvoice - UnprocessedInvoices:3} = {UnprocessedInvoices:3}')
 
     st.session_state['UID_SALES'] = UID_SALES.copy()
-    st.session_state['PendingInvoices'] = UID_SALES[['INVNumber','Outlet','Outlet Name']].drop_duplicates()
+    st.session_state['PendingInvoices'] = UID_SALES[['INVNumber','Outlet','Outlet Name']].drop_duplicates().sort_values('INVNumber')
 
     # REMOVE THIS IF POSSIBLE
     st.markdown('---')
@@ -198,6 +198,8 @@ with page1:
         for _ in st.session_state.keys():
                 del st.session_state[_]
         st.experimental_rerun()
+
+    UID_SALES
 
 # Merger
 with page2:
